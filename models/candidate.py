@@ -1,5 +1,5 @@
 
-from database.connection import get_db_connection
+from database.connection import get_db_connection 
 
 class Candidate:
     def __init__(self,name, national_id,e_mail,subject,invigilator):
@@ -7,8 +7,8 @@ class Candidate:
         self.national_id = national_id
         self.e_mail = e_mail
         self.subject = subject
-        self.invigilator = invigilator
-        
+        self.invigilator = invigilatorconn = get_db_connection()
+   
     @property
     def name(self):
         return self.name
@@ -42,4 +42,3 @@ class Candidate:
         conn.close()
         return candidates
     
-Candidate.create_table()

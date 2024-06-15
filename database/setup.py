@@ -1,15 +1,18 @@
-
-from database.connection import get_db_connection
+import sqlite3
+from .connection import get_db_connection
 
 def create_tables():
     conn = get_db_connection()
     cursor = conn.cursor()
     
+    # cursor = get_db_connection().cursor()
+
+    
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS invigilators (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL
-            e_mail TEXT 
+            name TEXT NOT NULL,
+            e_mail TEXT, 
             room INTEGER
         )
     ''')
@@ -37,4 +40,4 @@ def create_tables():
     conn.close()
 
 if __name__ == '__main__':
-    create_tables
+    create_tables()
