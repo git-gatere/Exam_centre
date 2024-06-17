@@ -49,15 +49,15 @@ class Subject:
         conn.close()
         return [cls(id=row[0], name=row[1], room=row[2]) for row in subjects_rows]
     
-    @classmethod
-    def create_test_data(cls):
-        rooms = [301, 302, 303, 304, 305, 306, 307, 308]
-        subjects = ["Mathematics", "English", "Physics", "Chemistry", "Biology", "Computer", "Art", "Music"]
+    # @classmethod
+    # def create_test_data(cls):
+    #     rooms = [301, 302, 303, 304, 305, 306, 307, 308]
+    #     subjects = ["Mathematics", "English", "Physics", "Chemistry", "Biology", "Computer", "Art", "Music"]
 
-        for room, subject in zip(rooms, subjects):
-            subj = cls(id=None, name=subject, room=room)
-            subj.save()
-        print("Test data created successfully")
+    #     for room, subject in zip(rooms, subjects):
+    #         subj = cls(id=None, name=subject, room=room)
+    #         subj.save()
+    #     print("Test data created successfully")
     
-    create_test_data()
+    # create_test_data()
     
