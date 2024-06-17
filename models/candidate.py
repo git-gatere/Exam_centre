@@ -1,13 +1,27 @@
 
+#imports the connection to the database
 from database.connection import get_db_connection 
+from subject import Subject
+from invigilator import Invigilator
 
+
+#creates a class called Candidates with attributes name, national_id, e_mail, subject and invigilator
 class Candidate:
     def __init__(self,name, national_id,e_mail,subject,invigilator):
         self.name = name
         self.national_id = national_id
         self.e_mail = e_mail
-        self.subject = subject
-        self.invigilator = invigilatorconn = get_db_connection()
+# checks whether the value passed in for subject is actually an instance of the class Subject and returns an error if it is not
+        if isinstance (subject, Subject):
+            self.subject = subject
+        else:
+            Exception("Subject not found!")
+        
+# checks whether the value passed in for invigilator is actually an instance of the class Invigilator and returns an error if it is not
+        if isinstance(invigilator, Invigilator):
+            self.invigilator = invigilator
+        else:
+            Exception("Invigilator not found!")
    
     @property
     def name(self):
@@ -28,8 +42,8 @@ class Candidate:
     def save(self):
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute('INSERT INTO candidates (name, national_id, invigilator_id, subject_id) VALUES (?, ?, ?, ?)',
-                       (self.name, self.national_id, self.invigilator.id))
+        cursor.execute('INSERT INTO candidates (name, national_id, e_mail, subject, invigilator) VALUES (?, ?, ?, ?, ?)',
+                       (self.name, self.national_id, self.e_mail, self.subject, self.invigilator))
         conn.commit()
         conn.close()
 
