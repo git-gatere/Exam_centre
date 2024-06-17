@@ -15,13 +15,13 @@ class Candidate:
         if isinstance (subject, Subject):
             self.subject = subject
         else:
-            Exception("Subject not found!")
+            ValueError("Subject not found!")
         
 # checks whether the value passed in for invigilator is actually an instance of the class Invigilator and returns an error if it is not
         if isinstance(invigilator, Invigilator):
             self.invigilator = invigilator
         else:
-            Exception("Invigilator not found!")
+            ValueError("Invigilator not found!")
    
     @property
     def name(self):

@@ -2,8 +2,8 @@
 from database.connection import get_db_connection
 
 class Subject:
-    # rooms = [301, 302, 303, 304, 305, 306, 307, 308]
-    # subjects = ["Mathematics", "English", "Physics", "Chemistry", "Biology", "Computer", "Art", "Music"]
+    rooms = [301, 302, 303, 304, 305, 306, 307, 308]
+    subjects = ["Mathematics", "English", "Physics", "Chemistry", "Biology", "Computer", "Art", "Music"]
     # subject_candidates = []
     all = []
     
@@ -13,12 +13,12 @@ class Subject:
         self.room = room
         Subject.all.append(self)
 
-    
-    # @classmethod
-    # def create_instances(cls):
+    #creates instances of the class Subject
+    @classmethod
+    def create_instances(cls):
 
-    #     for index, subject in enumerate(cls.subjects):
-    #         subject = cls(subject, cls.rooms[index])
+         for index, subject in enumerate(cls.subjects):
+           subject = cls(subject, cls.rooms[index])
 
 
 
@@ -51,4 +51,4 @@ class Subject:
         conn.close()
         return subjects
     
-# Subject.create_instances()
+Subject.create_instances()
