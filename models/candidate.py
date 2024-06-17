@@ -1,8 +1,10 @@
 
 #imports the connection to the database
+import sys
+import os
 from database.connection import get_db_connection 
-from subject import Subject
-from invigilator import Invigilator
+from subject import *
+from invigilator import *
 
 
 #creates a class called Candidates with attributes name, national_id, e_mail, subject and invigilator
