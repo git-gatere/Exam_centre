@@ -10,7 +10,7 @@ Each subject is done in its own room.
 An invigilator invigilates multiple students.
 
 ## VIDEO TUTORIAL
-
+Exam_centre/Exam_center_video.webm
 ## TECHNOLOGIES USED
 Python
 
