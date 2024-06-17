@@ -1,49 +1,50 @@
-
-#imports the connection to the database
-from database.connection import get_db_connection 
+from database.connection import get_db_connection
 from models.subject import Subject
 from models.invigilator import Invigilator
 
-
-#creates a class called Candidates with attributes name, national_id, e_mail, subject and invigilator
 class Candidate:
-    def __init__(self,name, national_id,e_mail,subject,invigilator):
-        self.name = name
-        self.national_id = national_id
-        self.e_mail = e_mail
-# checks whether the value passed in for subject is actually an instance of the class Subject and returns an error if it is not
-        if isinstance (subject, Subject):
-            self.subject = subject
+    def __init__(self, name, national_id, e_mail, subject, invigilator):
+        self._name = name
+        self._national_id = national_id
+        self._e_mail = e_mail
+
+        if isinstance(subject, Subject):
+            self._subject = subject
         else:
-            Exception("Subject not found!")
+            raise Exception("Subject not found!")
         
-# checks whether the value passed in for invigilator is actually an instance of the class Invigilator and returns an error if it is not
         if isinstance(invigilator, Invigilator):
-            self.invigilator = invigilator
+            self._invigilator = invigilator
         else:
-            Exception("Invigilator not found!")
+            raise Exception("Invigilator not found!")
    
     @property
     def name(self):
-        return self.name
+        return self._name
 
     @property
     def national_id(self):
-        return self.national_id
-
-    @property
-    def invigilator(self):
-        return self.invigilator
+        return self._national_id
 
     @property
     def e_mail(self):
-        return self.e_mail
+        return self._e_mail
+
+    @property
+    def subject(self):
+        return self._subject
+
+    @property
+    def invigilator(self):
+        return self._invigilator
 
     def save(self):
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute('INSERT INTO candidates (name, national_id, e_mail, subject, invigilator) VALUES (?, ?, ?, ?, ?)',
-                       (self.name, self.national_id, self.e_mail, self.subject, self.invigilator))
+        cursor.execute(
+            'INSERT INTO candidates (name, national_id, e_mail, subject_id, invigilator_id) VALUES (?, ?, ?, ?, ?)',
+            (self._name, self._national_id, self._e_mail, self._subject.id, self._invigilator.id)
+        )
         conn.commit()
         conn.close()
 
@@ -52,7 +53,6 @@ class Candidate:
         conn = get_db_connection()
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM candidates')
-        candidates = cursor.fetchall()
+        candidates_rows = cursor.fetchall()
         conn.close()
-        return candidates
-    
+        return [cls(name=row[1], national_id=row[2], e_mail=row[3], subject=Subject.get_by_id(row[4]), invigilator=Invigilator.get_by_id(row[5])) for row in candidates_rows]
