@@ -23,7 +23,7 @@ The Exam Centre Management System is a Python application designed to streamline
 
 ## Video Tutorial
 
-[Include a link to your video tutorial here, if available.] Exam_center_video.webm
+[/Exam_centre/Exam_center_video.webm](Exam_center_video.webm)
 
 ## Technologies Used
 
