@@ -1,5 +1,3 @@
-
-
 from database.setup import create_tables
 from models.candidate import Candidate
 from models.invigilator import Invigilator
@@ -14,7 +12,7 @@ def add_candidate():
     name = input("Enter candidate name: ")
     national_id = input("Enter candidate national ID: ")
     e_mail = input("Enter candidate email: ")
-    
+
     # Display available subjects
     subjects = Subject.get_all()
     print("Available Subjects:")
