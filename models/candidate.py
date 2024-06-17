@@ -1,10 +1,8 @@
 
 #imports the connection to the database
-import sys
-import os
 from database.connection import get_db_connection 
-from subject import *
-from invigilator import *
+from models.subject import Subject
+from models.invigilator import Invigilator
 
 
 #creates a class called Candidates with attributes name, national_id, e_mail, subject and invigilator
@@ -17,13 +15,13 @@ class Candidate:
         if isinstance (subject, Subject):
             self.subject = subject
         else:
-            ValueError("Subject not found!")
+            Exception("Subject not found!")
         
 # checks whether the value passed in for invigilator is actually an instance of the class Invigilator and returns an error if it is not
         if isinstance(invigilator, Invigilator):
             self.invigilator = invigilator
         else:
-            ValueError("Invigilator not found!")
+            Exception("Invigilator not found!")
    
     @property
     def name(self):
